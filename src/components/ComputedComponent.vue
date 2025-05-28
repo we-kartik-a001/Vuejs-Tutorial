@@ -54,8 +54,6 @@ const increasevalue = () =>{
     numbercreated.num++
 }
 
-
-
 // number status checker 
 const numbercheck = computed(()=>{
     return numbercreated.num%2 == 0 ? 'even':'odd';
