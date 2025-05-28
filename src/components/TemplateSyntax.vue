@@ -51,5 +51,5 @@ function changeTitle()
     alert('Hello world');
 }
 
-const eventname ='mouseover'
+const eventname ='click'
 </script>
