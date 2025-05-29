@@ -1,22 +1,28 @@
+import { createApp } from 'vue'
+import App from './App.vue'  // <-- This imports App correctly
 import './assets/main.css'
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import Counter from './components/Counter.vue';
-import TemplateSyntax from './components/TemplateSyntax.vue';
-import ComputedComponent from './components/ComputedComponent.vue';
-import ClassBindings from './components/ClassBindings.vue';
-import Practical from './components/Practical.vue';
-import StyleComponent from './components/StyleComponent.vue';
+import {
+  Counter,
+  TemplateSyntax,
+  ComputedComponent,
+  ClassBindings,
+  Practical,
+  StyleComponent,
+  ConditionalComponent,
+  Listrendering
+} from './components'
 
-const app = createApp(App);
+const app = createApp(App)  // <-- Pass App here
 
-app.component('Counter', Counter);
-app.component('TemplateSyntax', TemplateSyntax);
-app.component('ComputedComponent', ComputedComponent);
-app.component('ClassBindings', ClassBindings);
-app.component('Practical', Practical);
-app.component('StyleComponent', StyleComponent);
+// Register components globally
+app.component('Counter', Counter)
+app.component('TemplateSyntax', TemplateSyntax)
+app.component('ComputedComponent', ComputedComponent)
+app.component('ClassBindings', ClassBindings)
+app.component('Practical', Practical)
+app.component('StyleComponent', StyleComponent)
+app.component('ConditionalComponent', ConditionalComponent)
+app.component('Listrendering', Listrendering)
 
-app.mount('#app'); 
-
+app.mount('#app')
