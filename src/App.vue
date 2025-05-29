@@ -10,6 +10,8 @@ import ComputedComponent from './components/ComputedComponent.vue';
     <template-syntax></template-syntax>
     <ComputedComponent/>
     <ClassBindings class="foo bar"/>
+    <Practical/>
+    <style-component/>
   </div>
 </template>
 

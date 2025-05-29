@@ -17,7 +17,7 @@
     <div :class="[{ active: isActive }, errorClass]">Apply active class</div>
   </div>
 </template>
-    <script setup>
+<script setup>
 import { computed, ref } from "vue";
 
 const isActive = ref(true);
