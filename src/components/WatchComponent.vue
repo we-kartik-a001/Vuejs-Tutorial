@@ -1,80 +1,102 @@
+<script setup>
+import { ref, watch } from "vue";
+
+const name = ref("");
+
+//basic
+watch(name, (newValue, oldvalue) => {
+  console.log(`${oldvalue} to ${newValue}`);
+});
+
+const status = ref("berozgar");
+const statuschanger = ref("");
+
+watch(status, (newValue, oldvalue) => {
+  statuschanger.value = newValue;
+
+  return statuschanger;
+});
+
+//medium
+const search = ref("");
+const result = ref(null);
+
+watch(search, async (newsearch) => {
+  if (!newsearch) {
+    result.value = "";
+    return;
+  }
+
+  result.value = "Loading";
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  result.value = `Result of "${newsearch}"`;
+});
+
+// watch practice
+const searchtext = ref("");
+const searchresult = ref(null);
+
+watch(searchtext, async (newsearchtext) => {
+  if (!newsearchtext) {
+    searchresult.value = "";
+    return;
+  }
+
+  searchresult.value = "Loading";
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  searchresult.value = `Result of "${newsearchtext}"`;
+});
+
+// watch with api
+const question = ref("");
+const answer = ref("Questions usually contain a question mark. ;-)");
+const loading = ref(false);
+
+watch(question, async (newquestion, oldquestion) => {
+  if (newquestion.includes("yes")) {
+    loading.value = true;
+    answer.value = "Thinking...";
+    try {
+    const res = await fetch("https://yesno.wtf/api");
+    answer.value = (await res.json()).answer;
+  } catch (error) {
+    answer.value = "Error! Could not reach the API. " + error;
+  } finally {
+    loading.value = false;
+  }
+  }
+  
+});
+</script>
+
 <template>
-  <div>
-    <p>Ask yes no question ?</p>
-    <input type="text" v-model="question" />
-    <p style="white-space: pre-line">{{ question }}</p>
+  <input v-model="name" />
 
-    <div>
-      <textarea v-model="message">message</textarea>
-      <p style="white-space: pre-line">{{ message }}</p>
-    </div>
+  <!-- practice -->
+  <div>
+    <input type="text" v-model="status" />
+  </div>
+  <p>
+    {{ statuschanger }}
+  </p>
+
+  <!-- watch api -->
+  <div>
+    <input type="text" v-model="search" />
+    <p>{{ result }}</p>
   </div>
 
-  <!-- Checkbox -->
+  <!-- Watch api practice -->
   <div>
-    <input type="checkbox" v-model="checkbox_value" />
-    {{ checkbox_value }}
-  </div>
-
-  <!-- Checkbox with custom value -->
-  <div>
-    <input
-      type="checkbox"
-      true-value="yes"
-      false-value="no"
-      v-model="checkbox_custome_value"
-    />
-    {{ checkbox_custome_value }}
-  </div>
-
-  <!-- Dynamic checkbox -->
-  <div>
-    <input type="checkbox" value="Nayan" v-model="checked_names" />
-    <input type="checkbox" value="Mohan" v-model="checked_names" />
-    <input type="checkbox" value="Rahul" v-model="checked_names" />
-  </div>
-  <p>{{ checked_names }}</p>
-
-  <!-- Radio -->
-  <div>
-    <input type="radio" value="one" v-model="checked_radio" />
-    <input type="radio" value="two" v-model="checked_radio" />
+    <input type="text" v-model="searchtext" />
+    <p>{{ searchresult }}</p>
   </div>
 
   <div>
-    {{ checked_radio }}
-  </div>
-
-  <!-- select -->
-  <div>
-    <select v-model="selected">
-      <option>A</option>
-      <option>B</option>
-      <option>C</option>
-      <option>D</option>
-    </select>
-    <p>value is {{ selected }}</p>
+    <p>
+      Ask a yes/no question:
+      <input v-model="question" :disabled="loading" />
+    </p>
+    <p>{{ answer }}</p>
   </div>
 </template>
-<script setup>
-import { ref } from "vue";
-
-const question = ref(" ");
-
-const message = ref("webdev");
-
-const answer = ref("question genrally container");
-
-// Checkbox
-const checkbox_value = ref(true);
-
-const checked_names = ref([]);
-
-const checkbox_custome_value = ref("yes");
-
-// radio
-const checked_radio = ref("one");
-
-//select
-const selected = ref("A");
-</script>

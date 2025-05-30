@@ -2,7 +2,11 @@
   <div>
     <counter></counter>
     <template-syntax></template-syntax>
-    <watch-component />
+    <FormInput/>
+    <watch-component/>
+    <div style=" margin-bottom: 25rem;">
+
+    </div>
   </div>
 </template>
 
