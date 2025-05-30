@@ -16,9 +16,8 @@ import ComputedComponent from './components/ComputedComponent.vue';
     <style-component/>
     <ConditionalComponent/>
     <Listrendering/>
-    <div style="margin-bottom: 30rem;">
-
-    </div>
+    <practical-2/>
+    <div style="margin-bottom: 30rem;"></div>
   </div>
 </template>
 

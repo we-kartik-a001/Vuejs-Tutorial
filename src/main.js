@@ -10,7 +10,8 @@ import {
   Practical,
   StyleComponent,
   ConditionalComponent,
-  Listrendering
+  Listrendering,
+  Practical2
 } from './components'
 
 const app = createApp(App)  // <-- Pass App here
@@ -24,5 +25,6 @@ app.component('Practical', Practical)
 app.component('StyleComponent', StyleComponent)
 app.component('ConditionalComponent', ConditionalComponent)
 app.component('Listrendering', Listrendering)
+app.component('Practical2', Practical2)
 
 app.mount('#app')
